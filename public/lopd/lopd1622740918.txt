@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class Archivos extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+
+        Schema::create('archivo',function (Blueprint $table) {
+
+            $table->string('comunidad')->unsigned();
+            $table->string('proveedor')->unsigned();
+
+            $table->string('lopd')->nullable();
+            $table->string('visita')->nullable();
+            $table->string('informe')->nullable();
+
+            $table->foreign('comunidad')->references('comunidad')->on('comunidades')->onDelete('cascade');
+            $table->foreign('proveedor')->references('proveedor')->on('proveedor')->onDelete('cascade');
+
+
+
+        });
+
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('archivo');
+    }
+}
