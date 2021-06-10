@@ -54,6 +54,6 @@ class ArchivosController extends Controller
            'informe' => $informe
         ]);
 
-        return view ('comunidades.index');
+        return redirect()->route('comunidades.index');
     }
 }
