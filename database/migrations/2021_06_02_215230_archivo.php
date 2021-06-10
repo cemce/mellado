@@ -27,7 +27,7 @@ class Archivo extends Migration
         });
 
         Schema::table('archivos', function($table) {
-            $table->foreign('id_comunidad_foreign')->references('id')->on('comunidades');
+            $table->foreign('id_comunidad_foreign')->references('id')->on('comunidades')->onDelete('cascade');
         });
 
     }

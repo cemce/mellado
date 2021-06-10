@@ -32,7 +32,7 @@ class Proveedor extends Migration
         });
 
         Schema::table('proveedores', function($table) {
-            $table->foreign('id_admin')->references('id')->on('users');
+            $table->foreign('id_admin')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
