@@ -1,6 +1,14 @@
+@if (Auth::user()->role == "proveedor" && $comunidades->isEmpty())
+
+<div class="grey-icon-wrapper col-sm-4">
+    <div class="text-block">
+        <B>NO HAY COMUNIDADES</B>
+    </div>
+</div>
 
 
-@if($comunidades->isEmpty())
+
+@elseif ($comunidades->isEmpty())
 
     <div class="grey-icon-wrapper col-sm-4">
         <div class="text-block">

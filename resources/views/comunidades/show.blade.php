@@ -34,8 +34,11 @@
               <br><br>
               <strong>NUMERO DE VECINOS</strong>: {{$comunidades->numerodevecinos}}
               <br><br>
+
+              @if (Auth::user()->role != "proveedor")
               <strong>PRECIO</strong>: {{$comunidades->precio}}
               <br><br>
+              @endif
 
                 @if (!empty($comunidades->foto))
                   <strong>FOTO DEL PORTAL</strong>: <br>
@@ -55,7 +58,9 @@
   </div>
 
 
-  @include('comercial')
+
+
+  @include('proveedoresComunidad')
 
   @if (Auth::user()->role == "comercial")
   @include('checklist')

@@ -1,4 +1,5 @@
-@if (Auth::user()->role == "comercial")
+
+@if (Auth::user()->role == "adminfinca")
 
 <p> Buenas {{$mail_data['comunidad']->tecnico}}</p>
 <p>Actualmente tienes comunidades donde no hay los archivos correspondientes colgados. {{$mail_data['comunidad']->comunidad}} </p>
@@ -22,12 +23,4 @@
 
 
 
-@if (Auth::user()->role == "adminfinca")
 
-    <p>Buenas {{$mail_data['proveedor']->contacto}}</p>
-    <br>
-    <p>{{$mail_data['adminfinca']->name}}, quiere contactar contigo</p>
-    <p>Puedes enviar un correo a {{$mail_data ['adminfinca']->email}}</p>
-    <p>Que tenga buenos dias.</p>
-
-    @endif

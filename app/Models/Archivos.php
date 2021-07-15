@@ -13,7 +13,9 @@ class Archivos extends Model
 
     protected $fillable = [
 
-        'id_comunidad_foreign',
+        'id',
+        'id_proveedor',
+        'id_comunidad',
         'lopd',
         'visita',
         'informe'

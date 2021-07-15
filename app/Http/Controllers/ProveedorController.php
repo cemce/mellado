@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidades;
 use App\Models\Proveedores;
 use Illuminate\Http\Request;
-use DB;
+use \DB;
 use App\Models\User;
 class ProveedorController extends Controller
 {
@@ -77,7 +78,7 @@ class ProveedorController extends Controller
 
 
 
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
         {
 
             $cambio = Proveedores::findOrFail($id);
@@ -88,7 +89,32 @@ class ProveedorController extends Controller
 
             return view ('proveedor.index', compact('proveedor'));
 
+        }
+
+    public function asignar() {
+
+
+        $comunidades = DB::table('comunidades')->orderBy('comunidad', 'asc')->get();
+        $proveedores = DB::table('proveedores')->get();
+
+        return view ('proveedor.asignar', compact('comunidades' , 'proveedores'));
     }
 
 
+    public function archivos ($proveedor, $id) {
+
+
+
+
+        $proveedores = DB::table('proveedores')->where('nombreproveedor' , $proveedor)->first();
+        $comunidad = Comunidades::findOrFail($id);
+        $archivos = DB::table('archivos')->where('id_proveedor' , $proveedores->id)
+                                         ->where('id_comunidad' , $comunidad->id)
+                                         ->first();
+
+
+
+        return view ('proveedor.archivos', ['proveedores' => $proveedores , 'comunidad' => $comunidad , 'archivos' => $archivos]);
+
+    }
 }

@@ -11,8 +11,9 @@ class MailController extends Controller
     public function sendEmail ($request) {
 
 
+        dd($request);
         $comunidad = DB::table('comunidades')->where('comunidad', $request)->first();
-        $archivos = DB::table('archivos')->where('id_comunidad_foreign', $comunidad->id)->first();
+        $archivos = DB::table('archivos')->where('id_comunidad', $comunidad->id)->first();
 
         $data = [
           'name' => 'Mellado Cardoner',
@@ -41,6 +42,8 @@ class MailController extends Controller
         ];
 
         Mail::to($proveedor->email)->send(new EnviarMail($data));
+
+        return redirect()->back();
 
     }
 

@@ -13,9 +13,15 @@ class Comunidad extends Migration
      */
     public function up()
     {
+
+
+        Schema::dropIfExists('comunidades');
         Schema::create('comunidades', function (Blueprint $table) {
 
             $table->increments('id');
+            $table->string('id_proveedor1')->nullable();
+            $table->string('id_proveedor2')->nullable();
+            $table->string('id_proveedor3')->nullable();
             $table->string('comunidad');
             $table->string('numerodevecinos');
             $table->string('nif');
@@ -29,8 +35,11 @@ class Comunidad extends Migration
             $table->string('administrador');
             $table->string('foto')->nullable();
 
-
         });
+
+
+
+
     }
 
     /**

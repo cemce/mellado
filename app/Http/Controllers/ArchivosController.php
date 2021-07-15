@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Archivos;
+use Auth;
 use Illuminate\Http\Request;
 
 class ArchivosController extends Controller
@@ -46,14 +47,17 @@ class ArchivosController extends Controller
             $informe = $informenombre;
         }
 
-        Archivos::create( [
 
-            'id_comunidad_foreign' => $request->input('comunidadid'),
-           'lopd' => $lopd,
-           'visita' => $visita,
-           'informe' => $informe
+        Archivos::create([
+
+
+            'id_comunidad' => $request->input('comunidadid'),
+            'id_proveedor' => $request->input('proveedorid'),
+            'lopd' => $lopd,
+            'visita' => $visita,
+            'informe' => $informe
         ]);
 
-        return redirect()->route('comunidades.index');
+        return redirect()->back();
     }
 }

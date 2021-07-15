@@ -14,6 +14,9 @@ class Comunidades extends Model
     protected $fillable = [
 
         'id',
+        'id_proveedor1',
+        'id_proveedor2',
+        'id_proveedor3',
         'comunidad',
         'numerodevecinos',
         'precio',

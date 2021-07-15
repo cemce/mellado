@@ -19,7 +19,8 @@ class Archivo extends Migration
         {
 
             $table->increments('id');
-            $table->unsignedInteger('id_comunidad_foreign');
+            $table->unsignedInteger('id_proveedor');
+            $table->unsignedInteger('id_comunidad');
             $table->string('lopd')->nullable();
             $table->string('visita')->nullable();
             $table->string('informe')->nullable();
@@ -27,7 +28,9 @@ class Archivo extends Migration
         });
 
         Schema::table('archivos', function($table) {
-            $table->foreign('id_comunidad_foreign')->references('id')->on('comunidades')->onDelete('cascade');
+            $table->foreign('id_proveedor')->references('id')->on('proveedores')->onDelete('cascade');
+            $table->foreign('id_comunidad')->references('id')->on('comunidades')->onDelete('cascade');
+
         });
 
     }

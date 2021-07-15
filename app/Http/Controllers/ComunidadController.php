@@ -41,12 +41,8 @@ class ComunidadController extends Controller
 
 
         $comunidades = DB::table('comunidades')->where('comunidad', $comunidades)->first();
-        $archivos = DB::table('archivos')->where('id_comunidad_foreign', $comunidades->id)->first();
 
-
-
-
-        return view ('comunidades.show', compact ('comunidades', 'archivos'));
+         return view ('comunidades.show', compact ('comunidades'));
 
     }
 
@@ -63,17 +59,17 @@ class ComunidadController extends Controller
     public function exportpdf($comunidades) {
 
         $comunidad = DB::table('comunidades')->where('comunidad', $comunidades)->first();
-
+        $nombre = $comunidad->comunidad;
         $pdf = PDF::loadView('comunidades.pdf' , ['comunidades' => $comunidad]);
 
-        return $pdf->download('comunidad.pdf');
+        return $pdf->download('comunidad_' . $nombre . '.pdf');
     }
 
     public function search (Request $request) {
 
             $search = $request->input('tecnico');
 
-            $comunidades =  DB::table('comunidades')->where('tecnico', $search)->paginate(8);
+            $comunidades =  DB::table('comunidades')->where('tecnico', $search)->where('administrador' , Auth::user()->name)->paginate(8);
 
 
             return view('comunidades.index', compact('comunidades'));

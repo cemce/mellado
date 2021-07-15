@@ -1,4 +1,10 @@
 
 <div class="pagination content-center">
-{{ $comunidades->links('pagination::bootstrap-4') }}
+
+    @if ($comunidades instanceof \Illuminate\Pagination\LengthAwarePaginator )
+    {{ $comunidades->links('pagination::bootstrap-4') }}
+
+
+    @endif
+
 </div>

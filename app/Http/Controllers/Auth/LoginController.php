@@ -28,8 +28,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected $redirectTo = '/';
     /**
      * Create a new controller instance.
      *
@@ -53,9 +53,13 @@ class LoginController extends Controller
             return ('/comunidades');
         }
 
-        if (Auth::user()->role =="comercial") {
+        if (Auth::user()->role == "comercial") {
             return ('/comunidades');
         }
+        if (Auth::user()->role == "proveedor"){
+            return ('/listado');
+        }
+
         return '/home';
     }
 
